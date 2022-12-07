@@ -1,9 +1,9 @@
-import {of, from, timer, range} from 'rxjs';
+import { ajax } from 'rxjs/ajax';
 
-const o = range(0, 10)
+const data$ = ajax.getJSON('https://api.github.com/search/repositories?q=netology');
 
-o.subscribe({
-  next: (value: any) => console.log('Next:', value),
-  complete: () => console.log('Complete!'),
-  error: (error) => console.log('Error!', error)
-})
+data$.subscribe((value) => console.log('data$ value', value));
+
+const jsonPlaceholderData$ = ajax.getJSON('https://jsonplaceholder.typicode.com/todos');
+
+jsonPlaceholderData$.subscribe((value) => console.log('jsonplaceholderData$ value', value));
